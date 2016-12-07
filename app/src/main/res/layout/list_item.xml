@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/list_item_margin"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="@dimen/poster_size"
+        android:layout_height="@dimen/poster_size"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/movieName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/list_item_margin"
+        android:layout_toRightOf="@id/poster"
+        android:layout_toEndOf="@id/poster"
+        android:text="Pavadinimas"
+        android:textSize="@dimen/movie_name"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/movieYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/movieName"
+        android:layout_marginLeft="@dimen/list_item_margin"
+        android:layout_toRightOf="@id/poster"
+        android:layout_toEndOf="@id/poster"
+        android:textColor="@color/secondLabelText"
+        android:text="1992" />
+
+</RelativeLayout>
