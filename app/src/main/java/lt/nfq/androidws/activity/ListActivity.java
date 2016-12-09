@@ -32,9 +32,9 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
 
-        Movie movie1 = new Movie("Pavadinimas", "1992", "");
-        Movie movie2 = new Movie("Pavadinimas", "2000", "");
-        Movie movie3 = new Movie("Pavadinimas", "2015", "");
+        Movie movie1 = new Movie("Pavadinimas", "1992", "https://s-media-cache-ak0.pinimg.com/736x/a9/d5/ff/a9d5ffc839c6fd69bd76bdd1e81fb42d.jpg");
+        Movie movie2 = new Movie("Pavadinimas", "2000", "https://s-media-cache-ak0.pinimg.com/736x/a9/d5/ff/a9d5ffc839c6fd69bd76bdd1e81fb42d.jpg");
+        Movie movie3 = new Movie("Pavadinimas", "2015", "https://s-media-cache-ak0.pinimg.com/736x/a9/d5/ff/a9d5ffc839c6fd69bd76bdd1e81fb42d.jpg");
 
         List<Movie> movieList = new ArrayList<>();
         movieList.add(movie1);
