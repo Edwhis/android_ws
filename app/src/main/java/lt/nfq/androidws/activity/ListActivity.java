@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+import lt.nfq.androidws.Utils;
 import lt.nfq.androidws.adapters.MovieAdapter;
 import lt.nfq.androidws.models.Movie;
 import lt.nfq.androidws.R;
+import lt.nfq.androidws.services.MovieService;
 
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity implements MovieService.MoviesCallback {
 
     public final static String KEY_ELEMENT = "key";
 
@@ -32,17 +35,11 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
 
-        Movie movie1 = new Movie("Pavadinimas", "1992", "https://s-media-cache-ak0.pinimg.com/736x/a9/d5/ff/a9d5ffc839c6fd69bd76bdd1e81fb42d.jpg");
-        Movie movie2 = new Movie("Pavadinimas", "2000", "https://s-media-cache-ak0.pinimg.com/736x/a9/d5/ff/a9d5ffc839c6fd69bd76bdd1e81fb42d.jpg");
-        Movie movie3 = new Movie("Pavadinimas", "2015", "https://s-media-cache-ak0.pinimg.com/736x/a9/d5/ff/a9d5ffc839c6fd69bd76bdd1e81fb42d.jpg");
-
-        List<Movie> movieList = new ArrayList<>();
-        movieList.add(movie1);
-        movieList.add(movie2);
-        movieList.add(movie3);
-
-        mAdapter = new MovieAdapter(this, movieList);
-        mList.setAdapter(mAdapter);
+        if(Utils.isConnected(this)) {
+            MovieService.getMovies("fight", this);
+        } else {
+            Toast.makeText(this, "Nėra interneto", Toast.LENGTH_LONG).show();
+        }
     }
 
     @OnItemClick(R.id.list)
@@ -51,6 +48,17 @@ public class ListActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, DetailsActivity.class);
 //        intent.putExtra(KEY_ELEMENT, mAdapter.getItem(position));
 //        startActivity(intent);
+
+    }
+
+    @Override
+    public void onSuccess(List<Movie> movies) {
+        mAdapter = new MovieAdapter(this, movies);
+        mList.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onError() {
 
     }
 }
